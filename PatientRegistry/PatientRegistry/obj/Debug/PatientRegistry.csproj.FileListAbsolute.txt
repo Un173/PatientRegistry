@@ -1,0 +1,11 @@
+S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\PatientRegistry.exe.config
+S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\PatientRegistry.exe
+S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\PatientRegistry.pdb
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.csprojResolveAssemblyReference.cache
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.Form1.resources
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.Properties.Resources.resources
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.csproj.GenerateResource.cache
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.csproj.CoreCompileInputs.cache
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.exe
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.pdb
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.AddRecord.resources
