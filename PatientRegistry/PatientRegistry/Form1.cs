@@ -23,11 +23,11 @@ namespace PatientRegistry
 
         private void поступлениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddRecord addRecord = new AddRecord(@"S:\Projects\PatientRegistry\PatientRegistry\");
+            AddRecord addRecord = new AddRecord(true, @"S:\Projects\PatientRegistry\PatientRegistry\");
            var result= addRecord.ShowDialog();
             if (result == DialogResult.OK)
             {
-                databaseHandler.WriteToFile(addRecord.firstName,addRecord.lastName, addRecord.patronymic,addRecord.gender, addRecord.isMother,addRecord.dateOfEntry,addRecord.dateOfBirth,addRecord.placeOfLiving1,addRecord.placeOfLiving2,addRecord.bedProfile,addRecord.department);
+                databaseHandler.WriteToFile(addRecord.firstName,addRecord.lastName, addRecord.patronymic,addRecord.gender, addRecord.isMother,addRecord.dateOfEntry,addRecord.dateOfBirth,addRecord.placeOfLiving1,addRecord.placeOfLiving2,addRecord.bedProfile,addRecord.department,addRecord.status);
 
             }
             
@@ -43,7 +43,14 @@ namespace PatientRegistry
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
             int id = Convert.ToInt32(dataGridView1[0, e.RowIndex].Value);
+            DBRecord record = databaseHandler.FindRecordById(id);
+            if (record == null) return;
+            AddRecord addRecord = new AddRecord(false, @"S:\Projects\PatientRegistry\PatientRegistry\", record);
+            var result = addRecord.ShowDialog();
+            if (result == DialogResult.OK)
+            {
 
+            }
         }
     }
 }

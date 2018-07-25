@@ -43,6 +43,7 @@
             this.placeOfLiving2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bedProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +68,8 @@
             this.placeOfLiving1,
             this.placeOfLiving2,
             this.bedProfile,
-            this.department});
+            this.department,
+            this.status});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 24);
             this.dataGridView1.Name = "dataGridView1";
@@ -168,6 +170,12 @@
             this.department.Name = "department";
             this.department.ReadOnly = true;
             // 
+            // status
+            // 
+            this.status.HeaderText = "Статус";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,6 +211,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn placeOfLiving2;
         private System.Windows.Forms.DataGridViewTextBoxColumn bedProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn department;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
     }
 }
 

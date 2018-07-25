@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace PatientRegistry
 {
-    class DBRecord
+    public class DBRecord
     {
         public int id;
         public String firstName;
@@ -22,6 +22,7 @@ namespace PatientRegistry
         public String placeOfLiving2;
         public String bedProfile;
         public String department;
+        public int status;
     }
     class DatabaseHandler
     {
@@ -57,15 +58,32 @@ namespace PatientRegistry
                 record.placeOfLiving2 = str[9];
                 record.bedProfile = str[10];
                 record.department = str[11];
-               
+                record.status = Convert.ToInt32(str[12]);
+
                 records.Add(record);
             }
             currentId = lines.Length;
         }
-        public void WriteToFile(String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department)
+        public void WriteToFile(String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department, int _status)
         {
+
             currentId++;
-            String stringToWrite = currentId.ToString()+separator+_firstName+separator+_lastName+separator+_patronymic+separator+_gender+separator+_isMother+separator+_dateOfEntry+separator+_dateOfBirth+separator+_placeOfLiving1+separator+ _placeOfLiving2 + separator+_bedProfile + separator+_department;
+            DBRecord record = new DBRecord();
+            record.id = currentId;
+            record.lastName = _lastName;
+            record.firstName = _firstName;
+            record.patronymic =_patronymic;
+            record.gender = _gender;
+            record.isMother = _isMother;
+            record.dateOfEntry = _dateOfEntry;
+            record.dateOfBirth = _dateOfBirth;
+            record.placeOfLiving1 =_placeOfLiving1;
+            record.placeOfLiving2 = _placeOfLiving2;
+            record.bedProfile = _bedProfile;
+            record.department = _department;
+            record.status = _status;
+            records.Add(record);
+            String stringToWrite = currentId.ToString()+separator+ _lastName + separator+_firstName+separator+_patronymic+separator+_gender+separator+_isMother+separator+_dateOfEntry+separator+_dateOfBirth+separator+_placeOfLiving1+separator+ _placeOfLiving2 + separator+_bedProfile + separator+_department+separator+_status;
 
             if (!File.Exists(path))
             {
@@ -93,9 +111,33 @@ namespace PatientRegistry
                     isMother = "Да";
                 }
                 else isMother = "Нет";
+                String status="";
+              switch(record.status)
+                {
+                    case 0:
+                        {
+                            status = "Состоит";
+                            break;
+                        }
+                    case 1:
+                        {
+                            status = "Перевод в другое ЛПУ";
+                            break;
+                        }
+                    case 2:
+                        {
+                            status = "Смерть";
+                            break;
+                        }
 
-                dataGridView.Rows.Add(record.id, record.lastName, record.firstName, record.patronymic, gender, isMother, record.dateOfEntry.ToShortDateString(),record.dateOfBirth.ToShortDateString(), record.placeOfLiving1,record.placeOfLiving2,record.bedProfile,record.department);
+                }
+                dataGridView.Rows.Add(record.id, record.lastName, record.firstName, record.patronymic, gender, isMother,record.dateOfBirth.ToShortDateString(), record.dateOfEntry.ToShortDateString(),record.placeOfLiving1,record.placeOfLiving2,record.bedProfile,record.department,status);
             }
+        }
+        public DBRecord FindRecordById(int id)
+        {
+            foreach (DBRecord record in records) if (record.id == id) return record;
+            return null;
         }
     }
     

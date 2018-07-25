@@ -12,6 +12,7 @@ namespace PatientRegistry
 {
     public partial class AddRecord : Form
     {
+        bool mode;
         String path;
         public String firstName;
         public String lastName;
@@ -24,8 +25,10 @@ namespace PatientRegistry
         public String placeOfLiving2;
         public String bedProfile;
         public String department;
-        public AddRecord(String _path)
+        public int status;
+        public AddRecord(bool _mode, String _path)
         {
+            mode = _mode;
             path = _path;
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
@@ -34,22 +37,28 @@ namespace PatientRegistry
             variableComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             variableComboBox.DropDownStyle = ComboBoxStyle.DropDown;
         }
-        public AddRecord(String _path, String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother,DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department)
+        //String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department
+        public AddRecord(bool _mode,String _path, DBRecord record)
         {
-            textBox1.Text = _lastName;
-            textBox2.Text = _firstName;
-            textBox3.Text = _patronymic;
-            if (_gender == true)
+            path = _path;
+            mode = _mode;
+            InitializeComponent();
+
+            textBox1.Text = record.lastName;
+            textBox2.Text = record.firstName;
+            textBox3.Text = record.patronymic;
+            if (record.gender == true)
             {
                 comboBox2.Visible = false;
                 comboBox1.SelectedIndex = 0;
             }
             else
             {
+                comboBox2.Visible = true;
                 comboBox1.SelectedIndex = 1;
 
 
-                if (_isMother == true)
+                if (record.isMother == true)
                 {
                     comboBox2.SelectedIndex = 1;
                 }
@@ -57,18 +66,18 @@ namespace PatientRegistry
                     comboBox2.SelectedIndex = 0;
 
             }
-            dateTimePicker1.Value = _dateOfEntry;
-            dateTimePicker2.Value = _dateOfBirth;
-            comboBox3.SelectedValue = _placeOfLiving1;
-            variableComboBox.SelectedValue = _placeOfLiving2;
-            comboBox4.SelectedValue = _bedProfile;
-            comboBox5.SelectedValue = _department;
+            dateTimePicker1.Value = record.dateOfBirth;
+            dateTimePicker2.Value = record.dateOfEntry;
+
+            comboBox3.SelectedIndex = comboBox3.FindStringExact(record.placeOfLiving1);
+
+            variableComboBox.SelectedIndex = variableComboBox.FindStringExact(record.placeOfLiving2);
+            comboBox4.SelectedIndex = comboBox4.FindStringExact(record.bedProfile);
+            comboBox5.SelectedIndex = comboBox5.FindStringExact(record.department);
 
 
-            path = _path;
-            InitializeComponent();
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
+           
+         
             variableComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             variableComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             variableComboBox.DropDownStyle = ComboBoxStyle.DropDown;
@@ -143,6 +152,8 @@ namespace PatientRegistry
         private void button1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            if (mode == true) status = 0;
+            
             firstName = textBox2.Text;
             lastName = textBox1.Text;
             patronymic = textBox3.Text;
