@@ -44,7 +44,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.variableComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
@@ -192,27 +191,11 @@
             // 
             // comboBox3
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Город",
-            "Село",
-            "Другая область",
-            "Иваново"});
             this.comboBox3.Location = new System.Drawing.Point(176, 209);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.Size = new System.Drawing.Size(195, 21);
             this.comboBox3.TabIndex = 16;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-            // 
-            // variableComboBox
-            // 
-            this.variableComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.variableComboBox.FormattingEnabled = true;
-            this.variableComboBox.Location = new System.Drawing.Point(322, 209);
-            this.variableComboBox.Name = "variableComboBox";
-            this.variableComboBox.Size = new System.Drawing.Size(121, 21);
-            this.variableComboBox.TabIndex = 18;
             // 
             // label9
             // 
@@ -233,7 +216,7 @@
             "Неврология"});
             this.comboBox4.Location = new System.Drawing.Point(176, 246);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
+            this.comboBox4.Size = new System.Drawing.Size(195, 21);
             this.comboBox4.TabIndex = 20;
             // 
             // comboBox5
@@ -249,7 +232,7 @@
             "Реабилитация"});
             this.comboBox5.Location = new System.Drawing.Point(176, 273);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
+            this.comboBox5.Size = new System.Drawing.Size(195, 21);
             this.comboBox5.TabIndex = 22;
             // 
             // label10
@@ -292,7 +275,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.variableComboBox);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -334,7 +316,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox variableComboBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox5;

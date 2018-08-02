@@ -40,7 +40,6 @@
             this.dateOfEntry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.placeOfLiving1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.placeOfLiving2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bedProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +65,6 @@
             this.dateOfEntry,
             this.dateOfBirth,
             this.placeOfLiving1,
-            this.placeOfLiving2,
             this.bedProfile,
             this.department,
             this.status});
@@ -152,12 +150,6 @@
             this.placeOfLiving1.Name = "placeOfLiving1";
             this.placeOfLiving1.ReadOnly = true;
             // 
-            // placeOfLiving2
-            // 
-            this.placeOfLiving2.HeaderText = "Место проживания 2";
-            this.placeOfLiving2.Name = "placeOfLiving2";
-            this.placeOfLiving2.ReadOnly = true;
-            // 
             // bedProfile
             // 
             this.bedProfile.HeaderText = "Профиль койки";
@@ -208,7 +200,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfEntry;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirth;
         private System.Windows.Forms.DataGridViewTextBoxColumn placeOfLiving1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn placeOfLiving2;
         private System.Windows.Forms.DataGridViewTextBoxColumn bedProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn department;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;

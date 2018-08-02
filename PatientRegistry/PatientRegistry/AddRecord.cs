@@ -21,8 +21,7 @@ namespace PatientRegistry
         public String patronymic;
         public DateTime dateOfEntry;
         public DateTime dateOfBirth;
-        public String placeOfLiving1;
-        public String placeOfLiving2;
+        public String placeOfLiving;
         public String bedProfile;
         public String department;
         public int status;
@@ -33,9 +32,26 @@ namespace PatientRegistry
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
-            variableComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            variableComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            variableComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBox3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox3.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDown;
+
+            String[] lines = System.IO.File.ReadAllLines(path + "Cities.txt", System.Text.Encoding.Default);
+            AutoCompleteStringCollection data = new AutoCompleteStringCollection();
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                comboBox3.Items.Add(str);
+            }
+            lines = System.IO.File.ReadAllLines(path + "Settlements.txt", System.Text.Encoding.Default);
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                comboBox3.Items.Add(str);
+            }
+          
+
+            comboBox3.AutoCompleteCustomSource = data;
         }
         //String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department
         public AddRecord(bool _mode,String _path, DBRecord record)
@@ -43,6 +59,26 @@ namespace PatientRegistry
             path = _path;
             mode = _mode;
             InitializeComponent();
+            comboBox3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox3.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDown;
+            String[] lines = System.IO.File.ReadAllLines(path + "Cities.txt", System.Text.Encoding.Default);
+            AutoCompleteStringCollection data = new AutoCompleteStringCollection();
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                comboBox3.Items.Add(str);
+            }
+            lines = System.IO.File.ReadAllLines(path + "Settlements.txt", System.Text.Encoding.Default);
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                comboBox3.Items.Add(str);
+            }
+
+
+            comboBox3.AutoCompleteCustomSource = data;
+
 
             textBox1.Text = record.lastName;
             textBox2.Text = record.firstName;
@@ -69,18 +105,14 @@ namespace PatientRegistry
             dateTimePicker1.Value = record.dateOfBirth;
             dateTimePicker2.Value = record.dateOfEntry;
 
-            comboBox3.SelectedIndex = comboBox3.FindStringExact(record.placeOfLiving1);
+            comboBox3.SelectedIndex = comboBox3.FindStringExact(record.placeOfLiving);
 
-            variableComboBox.SelectedIndex = variableComboBox.FindStringExact(record.placeOfLiving2);
+
             comboBox4.SelectedIndex = comboBox4.FindStringExact(record.bedProfile);
             comboBox5.SelectedIndex = comboBox5.FindStringExact(record.department);
 
 
-           
-         
-            variableComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            variableComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            variableComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,57 +129,6 @@ namespace PatientRegistry
             }
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBox3.SelectedIndex)
-            {
-                case 0://Город
-                    {
-                        variableComboBox.Text = "";
-                        variableComboBox.Items.Clear();
-                        variableComboBox.Visible = true;
-                       
-                        String[] lines = System.IO.File.ReadAllLines(path + "Cities.txt", System.Text.Encoding.Default);
-                        AutoCompleteStringCollection data = new AutoCompleteStringCollection();
-                        foreach (String str in lines)
-                        {
-                            data.Add(str);
-                            variableComboBox.Items.Add(str);
-                        }
-                        variableComboBox.AutoCompleteCustomSource = data;
-                        break;
-                    }
-                case 1://Село
-                    {
-                        variableComboBox.Text = "";
-                        variableComboBox.Items.Clear();
-                        variableComboBox.Visible = true;
-      
-                        String[] lines = System.IO.File.ReadAllLines(path + "Settlements.txt", System.Text.Encoding.Default);
-                        AutoCompleteStringCollection data = new AutoCompleteStringCollection();
-                        foreach (String str in lines)
-                        {
-                            data.Add(str);
-                            variableComboBox.Items.Add(str);
-                        }
-                        variableComboBox.AutoCompleteCustomSource = data;
-
-                        break;
-                    }
-                case 2://Другая область
-                    {
-                        variableComboBox.Items.Clear();
-                        variableComboBox.Visible = false;
-                        break;
-                    }
-                case 3://Иваново
-                    {
-                        variableComboBox.Items.Clear();
-                        variableComboBox.Visible = false;
-                        break;
-                    }
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -163,8 +144,7 @@ namespace PatientRegistry
             else isMother = true;
             dateOfBirth = dateTimePicker1.Value.Date;
             dateOfEntry = dateTimePicker2.Value.Date;
-            placeOfLiving1 = comboBox3.Text;
-            placeOfLiving2 = variableComboBox.Text;
+            placeOfLiving = comboBox3.Text;
             bedProfile = comboBox4.Text;
             department = comboBox5.Text;
 

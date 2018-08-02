@@ -27,8 +27,8 @@ namespace PatientRegistry
            var result= addRecord.ShowDialog();
             if (result == DialogResult.OK)
             {
-                databaseHandler.WriteToFile(addRecord.firstName,addRecord.lastName, addRecord.patronymic,addRecord.gender, addRecord.isMother,addRecord.dateOfEntry,addRecord.dateOfBirth,addRecord.placeOfLiving1,addRecord.placeOfLiving2,addRecord.bedProfile,addRecord.department,addRecord.status);
-
+                databaseHandler.WriteToFile(addRecord.firstName,addRecord.lastName, addRecord.patronymic,addRecord.gender, addRecord.isMother,addRecord.dateOfEntry,addRecord.dateOfBirth,addRecord.placeOfLiving,addRecord.bedProfile,addRecord.department,addRecord.status);
+                databaseHandler.FillDataGridView();
             }
             
         }
@@ -49,7 +49,8 @@ namespace PatientRegistry
             var result = addRecord.ShowDialog();
             if (result == DialogResult.OK)
             {
-
+                databaseHandler.ModifyRegistry(id,addRecord.firstName, addRecord.lastName, addRecord.patronymic, addRecord.gender, addRecord.isMother, addRecord.dateOfEntry, addRecord.dateOfBirth, addRecord.placeOfLiving, addRecord.bedProfile, addRecord.department, addRecord.status);
+                databaseHandler.FillDataGridView();
             }
         }
     }

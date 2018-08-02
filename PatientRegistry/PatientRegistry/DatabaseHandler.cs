@@ -18,8 +18,7 @@ namespace PatientRegistry
         public bool isMother;
         public DateTime dateOfEntry;
         public DateTime dateOfBirth;
-        public String placeOfLiving1;
-        public String placeOfLiving2;
+        public String placeOfLiving;
         public String bedProfile;
         public String department;
         public int status;
@@ -54,17 +53,16 @@ namespace PatientRegistry
                 record.isMother = Convert.ToBoolean(str[5]);
                 record.dateOfEntry = Convert.ToDateTime(str[6]);
                 record.dateOfBirth = Convert.ToDateTime(str[7]);
-                record.placeOfLiving1 = str[8];
-                record.placeOfLiving2 = str[9];
-                record.bedProfile = str[10];
-                record.department = str[11];
-                record.status = Convert.ToInt32(str[12]);
+                record.placeOfLiving = str[8];
+                record.bedProfile = str[9];
+                record.department = str[10];
+                record.status = Convert.ToInt32(str[11]);
 
                 records.Add(record);
             }
             currentId = lines.Length;
         }
-        public void WriteToFile(String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department, int _status)
+        public void WriteToFile(String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _bedProfile, String _department, int _status)
         {
 
             currentId++;
@@ -77,13 +75,13 @@ namespace PatientRegistry
             record.isMother = _isMother;
             record.dateOfEntry = _dateOfEntry;
             record.dateOfBirth = _dateOfBirth;
-            record.placeOfLiving1 =_placeOfLiving1;
-            record.placeOfLiving2 = _placeOfLiving2;
+            record.placeOfLiving =_placeOfLiving1;
             record.bedProfile = _bedProfile;
             record.department = _department;
             record.status = _status;
             records.Add(record);
-            String stringToWrite = currentId.ToString()+separator+ _lastName + separator+_firstName+separator+_patronymic+separator+_gender+separator+_isMother+separator+_dateOfEntry+separator+_dateOfBirth+separator+_placeOfLiving1+separator+ _placeOfLiving2 + separator+_bedProfile + separator+_department+separator+_status;
+
+            String stringToWrite = currentId.ToString()+separator+ _lastName + separator+_firstName+separator+_patronymic+separator+_gender+separator+_isMother+separator+_dateOfEntry+separator+_dateOfBirth+separator+_placeOfLiving1+separator+_bedProfile + separator+_department+separator+_status;
 
             if (!File.Exists(path))
             {
@@ -94,8 +92,45 @@ namespace PatientRegistry
                 }
             }
         }
+        public void ModifyRegistry(int id,String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _bedProfile, String _department, int _status)
+        {
+          
+           
+            DBRecord record = new DBRecord();
+           
+            record.id = id;
+            record.lastName = _lastName;
+            record.firstName = _firstName;
+            record.patronymic = _patronymic;
+            record.gender = _gender;
+            record.isMother = _isMother;
+            record.dateOfEntry = _dateOfEntry;
+            record.dateOfBirth = _dateOfBirth;
+            record.placeOfLiving = _placeOfLiving1;
+            record.bedProfile = _bedProfile;
+            record.department = _department;
+            record.status = _status;
+            for(int i=0; i<records.Count;i++)
+            {
+                if (records[i].id == id) records[i] = record;
+            }
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = new StreamWriter(path + "Database.txt", false))
+                {
+                    foreach (DBRecord r in records)
+                    {
+                        String stringToWrite = r.id.ToString() + separator + r.lastName + separator + r.firstName + separator + r.patronymic + separator + r.gender + separator + r.isMother + separator + r.dateOfEntry + separator + r.dateOfBirth + separator + r.placeOfLiving + separator + r.bedProfile + separator + r.department + separator + r.status;
+                        sw.WriteLine(stringToWrite);
+                    }
+                }
+            }
+        }
         public void FillDataGridView()
         {
+            dataGridView.Rows.Clear();
+    
             foreach (DBRecord record in records)
             {
                 String gender;
@@ -131,7 +166,7 @@ namespace PatientRegistry
                         }
 
                 }
-                dataGridView.Rows.Add(record.id, record.lastName, record.firstName, record.patronymic, gender, isMother,record.dateOfBirth.ToShortDateString(), record.dateOfEntry.ToShortDateString(),record.placeOfLiving1,record.placeOfLiving2,record.bedProfile,record.department,status);
+                dataGridView.Rows.Add(record.id, record.lastName, record.firstName, record.patronymic, gender, isMother,record.dateOfBirth.ToShortDateString(), record.dateOfEntry.ToShortDateString(),record.placeOfLiving,record.bedProfile,record.department,status);
             }
         }
         public DBRecord FindRecordById(int id)
