@@ -19,8 +19,9 @@ namespace PatientRegistry
         public bool gender;
         public bool isMother;
         public String patronymic;
-        public DateTime dateOfEntry;
         public DateTime dateOfBirth;
+        public DateTime dateOfEntry;
+        public DateTime dateOfRetirement=DateTime.MinValue;
         public String placeOfLiving;
         public String bedProfile;
         public String department;
@@ -56,9 +57,25 @@ namespace PatientRegistry
         //String _firstName, String _lastName, String _patronymic, bool _gender, bool _isMother, DateTime _dateOfEntry, DateTime _dateOfBirth, String _placeOfLiving1, String _placeOfLiving2, String _bedProfile, String _department
         public AddRecord(bool _mode,String _path, DBRecord record)
         {
+            InitializeComponent();
             path = _path;
             mode = _mode;
-            InitializeComponent();
+            hidingLabel1.Visible = true;
+            statusComboBox.Visible = true;
+            dateOfRetirement = record.dateOfRetirement;
+            statusComboBox.SelectedIndex = record.status;
+            if (record.status == 0)
+            {
+                hidingLabel2.Visible = false;
+                dateTimePicker3.Visible = false;
+            }
+            else
+            {
+                hidingLabel2.Visible = true;
+                dateTimePicker3.Visible = true;
+                dateTimePicker3.Value = record.dateOfRetirement;
+            }
+        
             comboBox3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBox3.AutoCompleteSource = AutoCompleteSource.CustomSource;
             comboBox3.DropDownStyle = ComboBoxStyle.DropDown;
@@ -114,26 +131,33 @@ namespace PatientRegistry
 
 
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 1)
             {
                 label5.Visible = true;
                 comboBox2.Visible = true;
+              
             }
             else
             {
                 label5.Visible = false;
                 comboBox2.Visible = false;
+                comboBox2.SelectedIndex = 0;
             }
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            if (mode == true) status = 0;
+
+            if (mode == true)
+            {
+                status = 0;
+                dateOfRetirement = DateTime.MinValue;
+            }
+            else
+            {
+                status = statusComboBox.SelectedIndex;
+            }
             
             firstName = textBox2.Text;
             lastName = textBox1.Text;
@@ -144,17 +168,56 @@ namespace PatientRegistry
             else isMother = true;
             dateOfBirth = dateTimePicker1.Value.Date;
             dateOfEntry = dateTimePicker2.Value.Date;
-            placeOfLiving = comboBox3.Text;
+           
             bedProfile = comboBox4.Text;
             department = comboBox5.Text;
 
-            this.Close();
-        }
+            if (statusComboBox.SelectedIndex == 0|| statusComboBox.SelectedIndex==-1)
+            {
+                dateOfRetirement = DateTime.MinValue;
+            }
+            else
+            {
+                dateOfRetirement = dateTimePicker3.Value.Date;
+            }
 
+            if (comboBox3.FindStringExact(comboBox3.Text) == -1)
+            {
+                var result = MessageBox.Show("Неправильно введено место жительства", "Ошибка",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Question);
+               
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+                placeOfLiving = comboBox3.Text;
+                this.Close();
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void statusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (statusComboBox.SelectedIndex== 0)
+            {
+                hidingLabel2.Visible = false;
+                dateTimePicker3.Visible = false;
+                
+            }
+            else
+            {
+                hidingLabel2.Visible = true;
+                dateTimePicker3.Visible = true;
+                if(dateOfRetirement==DateTime.MinValue)
+                dateTimePicker3.Value = DateTime.Now;
+                else
+                    dateTimePicker3.Value = dateOfRetirement;
+            }
         }
     }
 }

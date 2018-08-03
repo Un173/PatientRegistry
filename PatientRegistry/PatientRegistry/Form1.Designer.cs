@@ -31,14 +31,18 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.лрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.поступлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Second = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Third = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateOfEntry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOfEntry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOfRetirement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.placeOfLiving1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bedProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.department = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,18 +66,19 @@
             this.patronymic,
             this.Second,
             this.Third,
-            this.dateOfEntry,
             this.dateOfBirth,
+            this.dateOfEntry,
+            this.dateOfRetirement,
             this.placeOfLiving1,
             this.bedProfile,
             this.department,
             this.status});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 53);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 397);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -90,10 +95,35 @@
             // 
             // лрToolStripMenuItem
             // 
+            this.лрToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.поступлениеToolStripMenuItem});
             this.лрToolStripMenuItem.Name = "лрToolStripMenuItem";
-            this.лрToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.лрToolStripMenuItem.Text = "Поступление";
-            this.лрToolStripMenuItem.Click += new System.EventHandler(this.поступлениеToolStripMenuItem_Click);
+            this.лрToolStripMenuItem.Size = new System.Drawing.Size(126, 20);
+            this.лрToolStripMenuItem.Text = "Движение больных";
+            // 
+            // поступлениеToolStripMenuItem
+            // 
+            this.поступлениеToolStripMenuItem.Name = "поступлениеToolStripMenuItem";
+            this.поступлениеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.поступлениеToolStripMenuItem.Text = "Поступление";
+            this.поступлениеToolStripMenuItem.Click += new System.EventHandler(this.поступлениеToolStripMenuItem_Click_1);
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(593, 27);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(195, 20);
+            this.searchTextBox.TabIndex = 2;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(481, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Поиск по фамилии:";
             // 
             // Id
             // 
@@ -132,17 +162,23 @@
             this.Third.Name = "Third";
             this.Third.ReadOnly = true;
             // 
+            // dateOfBirth
+            // 
+            this.dateOfBirth.HeaderText = "Дата рождения";
+            this.dateOfBirth.Name = "dateOfBirth";
+            this.dateOfBirth.ReadOnly = true;
+            // 
             // dateOfEntry
             // 
             this.dateOfEntry.HeaderText = "Дата поступления";
             this.dateOfEntry.Name = "dateOfEntry";
             this.dateOfEntry.ReadOnly = true;
             // 
-            // dateOfBirth
+            // dateOfRetirement
             // 
-            this.dateOfBirth.HeaderText = "Дата рождения";
-            this.dateOfBirth.Name = "dateOfBirth";
-            this.dateOfBirth.ReadOnly = true;
+            this.dateOfRetirement.HeaderText = "Дата выбытия";
+            this.dateOfRetirement.Name = "dateOfRetirement";
+            this.dateOfRetirement.ReadOnly = true;
             // 
             // placeOfLiving1
             // 
@@ -173,6 +209,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -191,14 +229,18 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem лрToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem поступлениеToolStripMenuItem;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn patronymic;
         private System.Windows.Forms.DataGridViewTextBoxColumn Second;
         private System.Windows.Forms.DataGridViewTextBoxColumn Third;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfEntry;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfEntry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfRetirement;
         private System.Windows.Forms.DataGridViewTextBoxColumn placeOfLiving1;
         private System.Windows.Forms.DataGridViewTextBoxColumn bedProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn department;
