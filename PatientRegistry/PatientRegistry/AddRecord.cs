@@ -101,50 +101,27 @@ namespace PatientRegistry
             textBox2.Text = record.firstName;
             textBox3.Text = record.patronymic;
             if (record.gender == true)
-            {
-                comboBox2.Visible = false;
                 comboBox1.SelectedIndex = 0;
-            }
             else
-            {
-                comboBox2.Visible = true;
                 comboBox1.SelectedIndex = 1;
 
 
-                if (record.isMother == true)
+                if (record.isLyingWithParent == true)
                 {
                     comboBox2.SelectedIndex = 1;
                 }
                 else
                     comboBox2.SelectedIndex = 0;
 
-            }
+            
             dateTimePicker1.Value = record.dateOfBirth;
             dateTimePicker2.Value = record.dateOfEntry;
-
             comboBox3.SelectedIndex = comboBox3.FindStringExact(record.placeOfLiving);
-
-
             comboBox4.SelectedIndex = comboBox4.FindStringExact(record.bedProfile);
             comboBox5.SelectedIndex = comboBox5.FindStringExact(record.department);
 
 
 
-        }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedIndex == 1)
-            {
-                label5.Visible = true;
-                comboBox2.Visible = true;
-              
-            }
-            else
-            {
-                label5.Visible = false;
-                comboBox2.Visible = false;
-                comboBox2.SelectedIndex = 0;
-            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -207,16 +184,32 @@ namespace PatientRegistry
             {
                 hidingLabel2.Visible = false;
                 dateTimePicker3.Visible = false;
-                
+                daysWithinLabel.Visible = false;
+                daysWithinTextBox.Visible = false;
             }
             else
             {
                 hidingLabel2.Visible = true;
                 dateTimePicker3.Visible = true;
-                if(dateOfRetirement==DateTime.MinValue)
-                dateTimePicker3.Value = DateTime.Now;
+                daysWithinLabel.Visible = true;
+                daysWithinTextBox.Visible = true;
+                if (dateOfRetirement == DateTime.MinValue)
+                    dateTimePicker3.Value = DateTime.Now;
                 else
+                {
+                    TimeSpan time;
+                    if (dateOfRetirement == DateTime.MinValue)
+                    { 
+                    time = DateTime.Today - dateOfEntry;
+                    }
+                    else
+                    {
+                        time = dateOfRetirement - dateOfEntry;
+                        daysWithinTextBox.Text = (time.Days - 1).ToString();
+                    }
+
                     dateTimePicker3.Value = dateOfRetirement;
+                }
             }
         }
     }

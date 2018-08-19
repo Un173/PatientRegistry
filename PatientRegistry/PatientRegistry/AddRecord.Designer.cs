@@ -54,6 +54,8 @@
             this.statusComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.hidingLabel2 = new System.Windows.Forms.Label();
+            this.daysWithinLabel = new System.Windows.Forms.Label();
+            this.daysWithinTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -125,7 +127,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 8;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -139,12 +140,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(249, 156);
+            this.label5.Location = new System.Drawing.Point(254, 156);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 13);
+            this.label5.Size = new System.Drawing.Size(143, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Является матерью?";
-            this.label5.Visible = false;
+            this.label5.Text = "Лежит ли с ним родитель?";
             // 
             // comboBox2
             // 
@@ -153,11 +153,10 @@
             this.comboBox2.Items.AddRange(new object[] {
             "Нет",
             "Да"});
-            this.comboBox2.Location = new System.Drawing.Point(365, 153);
+            this.comboBox2.Location = new System.Drawing.Point(403, 153);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 10;
-            this.comboBox2.Visible = false;
             // 
             // label6
             // 
@@ -312,11 +311,32 @@
             this.hidingLabel2.Text = "Дата выбытия:";
             this.hidingLabel2.Visible = false;
             // 
+            // daysWithinLabel
+            // 
+            this.daysWithinLabel.AutoSize = true;
+            this.daysWithinLabel.Location = new System.Drawing.Point(332, 41);
+            this.daysWithinLabel.Name = "daysWithinLabel";
+            this.daysWithinLabel.Size = new System.Drawing.Size(129, 13);
+            this.daysWithinLabel.TabIndex = 29;
+            this.daysWithinLabel.Text = "Количество койко-дней:";
+            this.daysWithinLabel.Visible = false;
+            // 
+            // daysWithinTextBox
+            // 
+            this.daysWithinTextBox.Enabled = false;
+            this.daysWithinTextBox.Location = new System.Drawing.Point(467, 38);
+            this.daysWithinTextBox.Name = "daysWithinTextBox";
+            this.daysWithinTextBox.Size = new System.Drawing.Size(89, 20);
+            this.daysWithinTextBox.TabIndex = 30;
+            this.daysWithinTextBox.Visible = false;
+            // 
             // AddRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 397);
+            this.ClientSize = new System.Drawing.Size(668, 397);
+            this.Controls.Add(this.daysWithinTextBox);
+            this.Controls.Add(this.daysWithinLabel);
             this.Controls.Add(this.hidingLabel2);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.statusComboBox);
@@ -378,5 +398,7 @@
         private System.Windows.Forms.ComboBox statusComboBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label hidingLabel2;
+        private System.Windows.Forms.Label daysWithinLabel;
+        private System.Windows.Forms.TextBox daysWithinTextBox;
     }
 }
