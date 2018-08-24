@@ -270,8 +270,8 @@ namespace PatientRegistry
             }
         }
         public void FillDataGridView(String lastName, String firstName, String patronymic,bool _gender, bool ignoreGender, bool isLyingWithParent, bool ignoreIsLyingWithParent,
-                DateTime dateOfBirth, bool ignoreDateOfBirth, DateTime dateOfEntry, bool ignoreDateOfEntry, DateTime _dateOfRetirement, bool ignoreDateOfRetirement,
-               DateTime endDateOfBirth, bool ignoreEndDateOfBirth, DateTime endDateOfEntry, bool ignoreEndDateOfEntry, DateTime endDateOfRetirement, bool ignoreEndDateOfRetirement,
+                bool ignoreDateOfBirth, DateTime dateOfBirth, bool isDateOfBirthPeriod,bool ignoreDateOfEntry, DateTime dateOfEntry, bool isDateOfEntryPeriod, bool ignoreDateOfRetirement, DateTime _dateOfRetirement, bool isDateOfRetirementPeriod,
+               DateTime endDateOfBirth, DateTime endDateOfEntry, DateTime endDateOfRetirement,
                String placeOfLiving, String bedProfile, String department, int _status)
         {
             dataGridView.Rows.Clear();
@@ -347,46 +347,80 @@ namespace PatientRegistry
                      (ignoreIsLyingWithParent == true || record.isLyingWithParent == isLyingWithParent)
                     )
                 {
-                    if (ignoreDateOfBirth == false)
+                    #region Фильтр по датам
+                    if (ignoreDateOfBirth==false)
+                    if (isDateOfBirthPeriod == false)
                     {
-                        if (ignoreEndDateOfBirth == false)
-                        {
+                        
                             int result1 = DateTime.Compare(record.dateOfBirth, dateOfBirth);
-                            int result2 = DateTime.Compare(record.dateOfBirth, endDateOfBirth);
-                            if (result1 < 0 && result2 > 0)
+                            if (result1 !=0)
                             {
                                 continue;
                             }
-
-                        }
-                        else
-                        {
-                            int result1 = DateTime.Compare(record.dateOfBirth, dateOfBirth);
-                            // int result2 = DateTime.Compare(record.dateOfBirth, endDateOfBirth);
-                            if (result1 < 0)
-                            {
-                                continue;
-                            }
-                        }
-                       
                     }
                     else
                     {
-                        if (ignoreEndDateOfBirth == false)
+                        int result1 = DateTime.Compare(record.dateOfBirth, dateOfBirth);
+                        int result2 = DateTime.Compare(record.dateOfBirth, endDateOfBirth);
+                        if (result1 < 0 || result2 > 0)
                         {
-                            //int result1 = DateTime.Compare(record.dateOfBirth, dateOfBirth);
-                            int result2 = DateTime.Compare(record.dateOfBirth, endDateOfBirth);
-                            if (result2 > 0)
+                            continue;
+                        }
+                    }
+                    if (ignoreDateOfEntry == false)
+                    if (isDateOfEntryPeriod == false)
+                    {
+
+                        int result1 = DateTime.Compare(record.dateOfEntry, dateOfEntry);
+                        if (result1 != 0)
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        int result1 = DateTime.Compare(record.dateOfEntry, dateOfEntry);
+                        int result2 = DateTime.Compare(record.dateOfEntry, endDateOfEntry);
+                        if (result1 < 0 || result2 > 0)
+                        {
+                            continue;
+                        }
+                    }
+                    if (ignoreDateOfRetirement == false)
+                    if (isDateOfRetirementPeriod == false)
+                    {
+
+                            int result1 = DateTime.Compare(record.dateOfRetirement, _dateOfRetirement);
+                            if (result1 != 0)
                             {
                                 continue;
                             }
-
-                        }
+                    }
                         else
                         {
-                            
+                            int result1 = DateTime.Compare(record.dateOfRetirement, _dateOfRetirement);
+                            int result2 = DateTime.Compare(record.dateOfRetirement, endDateOfRetirement);
+                            if (result1 < 0 || result2 > 0)
+                            {
+                                continue;
+                            }
                         }
-
+                    #endregion
+                    if (placeOfLiving != ""&&record.placeOfLiving!=placeOfLiving)
+                    {
+                        continue;
+                    }
+                    if (bedProfile != "Все" && record.bedProfile != bedProfile)
+                    {
+                        continue;
+                    }
+                    if (department != "Все" && record.department != department)
+                    {
+                        continue;
+                    }
+                    if (_status != -1 && record.status != _status)
+                    {
+                        continue;
                     }
                     dataGridView.Rows.Add(record.id, record.lastName, record.firstName, record.patronymic, gender, isMother, record.dateOfBirth.ToShortDateString(), daysWithin, record.dateOfEntry.ToShortDateString(), dateOfRetirement, record.placeOfLiving, record.bedProfile, record.department, status);
                 }

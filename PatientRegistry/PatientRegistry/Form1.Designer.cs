@@ -76,12 +76,12 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.endDateOfRetirementDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateOfEntryDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateOfBirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +114,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1032, 295);
+            this.dataGridView1.Size = new System.Drawing.Size(1148, 295);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -210,7 +210,7 @@
             this.лрToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1032, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1148, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -334,7 +334,7 @@
             "Патологии новорожденных №2",
             "Неврологическое",
             "Реабилитация"});
-            this.departmentComboBox.Location = new System.Drawing.Point(796, 88);
+            this.departmentComboBox.Location = new System.Drawing.Point(888, 90);
             this.departmentComboBox.Name = "departmentComboBox";
             this.departmentComboBox.Size = new System.Drawing.Size(195, 21);
             this.departmentComboBox.TabIndex = 32;
@@ -342,7 +342,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(633, 91);
+            this.label10.Location = new System.Drawing.Point(725, 93);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 31;
@@ -357,7 +357,7 @@
             "Педиатрия",
             "Патология новорожденных",
             "Неврология"});
-            this.bedProfileComboBox.Location = new System.Drawing.Point(796, 61);
+            this.bedProfileComboBox.Location = new System.Drawing.Point(888, 63);
             this.bedProfileComboBox.Name = "bedProfileComboBox";
             this.bedProfileComboBox.Size = new System.Drawing.Size(195, 21);
             this.bedProfileComboBox.TabIndex = 30;
@@ -365,7 +365,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(633, 64);
+            this.label9.Location = new System.Drawing.Point(725, 66);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 13);
             this.label9.TabIndex = 29;
@@ -374,7 +374,7 @@
             // placeOfLivingComboBox
             // 
             this.placeOfLivingComboBox.FormattingEnabled = true;
-            this.placeOfLivingComboBox.Location = new System.Drawing.Point(796, 24);
+            this.placeOfLivingComboBox.Location = new System.Drawing.Point(888, 26);
             this.placeOfLivingComboBox.Name = "placeOfLivingComboBox";
             this.placeOfLivingComboBox.Size = new System.Drawing.Size(195, 21);
             this.placeOfLivingComboBox.TabIndex = 28;
@@ -382,7 +382,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(633, 27);
+            this.label8.Location = new System.Drawing.Point(725, 29);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(105, 13);
             this.label8.TabIndex = 27;
@@ -391,7 +391,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 166);
+            this.label7.Location = new System.Drawing.Point(12, 164);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 13);
             this.label7.TabIndex = 26;
@@ -400,7 +400,7 @@
             // dateOfEntryDateTimePicker
             // 
             this.dateOfEntryDateTimePicker.Enabled = false;
-            this.dateOfEntryDateTimePicker.Location = new System.Drawing.Point(123, 163);
+            this.dateOfEntryDateTimePicker.Location = new System.Drawing.Point(178, 164);
             this.dateOfEntryDateTimePicker.Name = "dateOfEntryDateTimePicker";
             this.dateOfEntryDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateOfEntryDateTimePicker.TabIndex = 25;
@@ -408,7 +408,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 137);
+            this.label6.Location = new System.Drawing.Point(12, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 24;
@@ -417,7 +417,7 @@
             // dateOfBirthDateTimePicker
             // 
             this.dateOfBirthDateTimePicker.Enabled = false;
-            this.dateOfBirthDateTimePicker.Location = new System.Drawing.Point(123, 137);
+            this.dateOfBirthDateTimePicker.Location = new System.Drawing.Point(178, 138);
             this.dateOfBirthDateTimePicker.Name = "dateOfBirthDateTimePicker";
             this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateOfBirthDateTimePicker.TabIndex = 23;
@@ -425,7 +425,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(633, 118);
+            this.label11.Location = new System.Drawing.Point(725, 120);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 13);
             this.label11.TabIndex = 33;
@@ -441,15 +441,14 @@
             "Выписка",
             "Перевод в другое ЛПУ",
             "Смерть"});
-            this.statusComboBox.Location = new System.Drawing.Point(796, 115);
+            this.statusComboBox.Location = new System.Drawing.Point(888, 117);
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(195, 21);
             this.statusComboBox.TabIndex = 35;
-            this.statusComboBox.Visible = false;
             // 
             // filterButton
             // 
-            this.filterButton.Location = new System.Drawing.Point(636, 158);
+            this.filterButton.Location = new System.Drawing.Point(728, 160);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(113, 23);
             this.filterButton.TabIndex = 36;
@@ -459,7 +458,7 @@
             // 
             // clearFilterButton
             // 
-            this.clearFilterButton.Location = new System.Drawing.Point(774, 158);
+            this.clearFilterButton.Location = new System.Drawing.Point(866, 160);
             this.clearFilterButton.Name = "clearFilterButton";
             this.clearFilterButton.Size = new System.Drawing.Size(113, 23);
             this.clearFilterButton.TabIndex = 37;
@@ -469,17 +468,18 @@
             // 
             // saveToFileButton
             // 
-            this.saveToFileButton.Location = new System.Drawing.Point(914, 158);
+            this.saveToFileButton.Location = new System.Drawing.Point(1006, 160);
             this.saveToFileButton.Name = "saveToFileButton";
             this.saveToFileButton.Size = new System.Drawing.Size(113, 23);
             this.saveToFileButton.TabIndex = 38;
             this.saveToFileButton.Text = "Сохранить в файл";
             this.saveToFileButton.UseVisualStyleBackColor = true;
+            this.saveToFileButton.Click += new System.EventHandler(this.saveToFileButton_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(17, 193);
+            this.label12.Location = new System.Drawing.Point(12, 193);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 13);
             this.label12.TabIndex = 40;
@@ -488,7 +488,7 @@
             // dateOfRetirementDateTimePicker
             // 
             this.dateOfRetirementDateTimePicker.Enabled = false;
-            this.dateOfRetirementDateTimePicker.Location = new System.Drawing.Point(123, 190);
+            this.dateOfRetirementDateTimePicker.Location = new System.Drawing.Point(178, 191);
             this.dateOfRetirementDateTimePicker.Name = "dateOfRetirementDateTimePicker";
             this.dateOfRetirementDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateOfRetirementDateTimePicker.TabIndex = 39;
@@ -496,85 +496,43 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(330, 139);
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(385, 140);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(45, 17);
+            this.checkBox1.Size = new System.Drawing.Size(70, 17);
             this.checkBox1.TabIndex = 41;
-            this.checkBox1.Text = "Все";
+            this.checkBox1.Text = "Период?";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(330, 165);
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(385, 166);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(45, 17);
+            this.checkBox2.Size = new System.Drawing.Size(70, 17);
             this.checkBox2.TabIndex = 42;
-            this.checkBox2.Text = "Все";
+            this.checkBox2.Text = "Период?";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(329, 192);
+            this.checkBox3.Enabled = false;
+            this.checkBox3.Location = new System.Drawing.Point(384, 193);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(45, 17);
+            this.checkBox3.Size = new System.Drawing.Size(70, 17);
             this.checkBox3.TabIndex = 43;
-            this.checkBox3.Text = "Все";
+            this.checkBox3.Text = "Период?";
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Checked = true;
-            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(587, 194);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(45, 17);
-            this.checkBox6.TabIndex = 50;
-            this.checkBox6.Text = "Все";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Checked = true;
-            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.Location = new System.Drawing.Point(588, 167);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(45, 17);
-            this.checkBox5.TabIndex = 49;
-            this.checkBox5.Text = "Все";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(588, 141);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(45, 17);
-            this.checkBox4.TabIndex = 48;
-            this.checkBox4.Text = "Все";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // endDateOfRetirementDateTimePicker
             // 
             this.endDateOfRetirementDateTimePicker.Enabled = false;
-            this.endDateOfRetirementDateTimePicker.Location = new System.Drawing.Point(381, 192);
+            this.endDateOfRetirementDateTimePicker.Location = new System.Drawing.Point(461, 194);
             this.endDateOfRetirementDateTimePicker.Name = "endDateOfRetirementDateTimePicker";
             this.endDateOfRetirementDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.endDateOfRetirementDateTimePicker.TabIndex = 47;
@@ -582,7 +540,7 @@
             // endDateOfEntryDateTimePicker
             // 
             this.endDateOfEntryDateTimePicker.Enabled = false;
-            this.endDateOfEntryDateTimePicker.Location = new System.Drawing.Point(381, 165);
+            this.endDateOfEntryDateTimePicker.Location = new System.Drawing.Point(461, 166);
             this.endDateOfEntryDateTimePicker.Name = "endDateOfEntryDateTimePicker";
             this.endDateOfEntryDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.endDateOfEntryDateTimePicker.TabIndex = 45;
@@ -590,16 +548,55 @@
             // endDateOfBirthDateTimePicker
             // 
             this.endDateOfBirthDateTimePicker.Enabled = false;
-            this.endDateOfBirthDateTimePicker.Location = new System.Drawing.Point(381, 139);
+            this.endDateOfBirthDateTimePicker.Location = new System.Drawing.Point(461, 140);
             this.endDateOfBirthDateTimePicker.Name = "endDateOfBirthDateTimePicker";
             this.endDateOfBirthDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.endDateOfBirthDateTimePicker.TabIndex = 44;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(118, 140);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(45, 17);
+            this.checkBox4.TabIndex = 48;
+            this.checkBox4.Text = "Все";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Checked = true;
+            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox5.Location = new System.Drawing.Point(118, 164);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(45, 17);
+            this.checkBox5.TabIndex = 49;
+            this.checkBox5.Text = "Все";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Checked = true;
+            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox6.Location = new System.Drawing.Point(118, 191);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(45, 17);
+            this.checkBox6.TabIndex = 50;
+            this.checkBox6.Text = "Все";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 581);
+            this.ClientSize = new System.Drawing.Size(1148, 581);
             this.Controls.Add(this.checkBox6);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.checkBox4);
@@ -699,12 +696,12 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.DateTimePicker endDateOfRetirementDateTimePicker;
         private System.Windows.Forms.DateTimePicker endDateOfEntryDateTimePicker;
         private System.Windows.Forms.DateTimePicker endDateOfBirthDateTimePicker;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }
 

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace PatientRegistry
 {
@@ -96,18 +92,20 @@ namespace PatientRegistry
             bool ignoreGender;
             bool isLyingWithParent= false;
             bool ignoreIsLyingWithParent;
-            DateTime dateOfEntry;
-            bool ignoreDateOfEntry = true;
-            DateTime endDateOfEntry;
-            bool ignoreEndDateOfEntry = true;
-            DateTime dateOfRetirement;
+            DateTime dateOfEntry = dateOfEntryDateTimePicker.Value.Date;
+            bool ignoreDateOfEntry=true;
+            bool isDateOfEntryPeriod = false;
+            DateTime endDateOfEntry = DateTime.MinValue;
+            DateTime dateOfRetirement =dateOfRetirementDateTimePicker.Value.Date;
             bool ignoreDateOfRetirement = true;
-            DateTime endDateOfRetirement;
-            bool ignoreEndDateOfRetirement = true;
-            DateTime dateOfBirth;
+            bool isDateOfRetirementPeriod = false;
+            DateTime endDateOfRetirement = DateTime.MinValue;
+
+            DateTime dateOfBirth = dateOfBirthDateTimePicker.Value.Date;
             bool ignoreDateOfBirth = true;
-            DateTime endDateOfBirth;
-            bool ignoreEndDateOfBirth = true;
+            bool isDateOfBirthPeriod = false;
+            DateTime endDateOfBirth=DateTime.MinValue;
+
             String placeOfLiving;
             String bedProfile;
             String department;
@@ -134,68 +132,64 @@ namespace PatientRegistry
             }
             if (checkBox1.Checked == true)
             {
-                ignoreDateOfBirth = true;
-                dateOfBirth = DateTime.MinValue;
+                isDateOfBirthPeriod = true;
+                endDateOfBirth = endDateOfBirthDateTimePicker.Value.Date;
             }
             else
             {
-                ignoreDateOfBirth = false;
-                dateOfBirth = dateOfBirthDateTimePicker.Value.Date;
+                isDateOfBirthPeriod = false;
+                
             }
 
             if (checkBox2.Checked == true)
             {
-                ignoreDateOfEntry = true;
-                dateOfEntry = DateTime.MinValue;
+                isDateOfEntryPeriod = true;
+                endDateOfEntry = endDateOfEntryDateTimePicker.Value.Date;
             }
             else
             {
-                ignoreDateOfEntry = false;
-                dateOfEntry = dateOfEntryDateTimePicker.Value.Date;
+                isDateOfEntryPeriod = false;
+                
             }
 
             if (checkBox3.Checked == true)
             {
+                isDateOfRetirementPeriod = true;
+                endDateOfRetirement = endDateOfRetirementDateTimePicker.Value.Date;
+            }
+            else
+            {
+                isDateOfRetirementPeriod = false;
+                
+            }
+            if (checkBox4.Checked == true)
+            {
+                ignoreDateOfBirth = true;
+                
+            }
+            else
+            {
+                ignoreDateOfBirth = false;
+
+            }
+            if (checkBox5.Checked == true)
+            {
+                ignoreDateOfEntry = true;
+
+            }
+            else
+            {
+                ignoreDateOfEntry = false;
+
+            }
+            if (checkBox6.Checked == true)
+            {
                 ignoreDateOfRetirement = true;
-                dateOfRetirement= DateTime.MinValue; 
+
             }
             else
             {
                 ignoreDateOfRetirement = false;
-                dateOfRetirement = dateOfRetirementDateTimePicker.Value.Date;
-            }
-
-            if (checkBox4.Checked == true)
-            {
-                ignoreEndDateOfBirth = true;
-                endDateOfBirth = DateTime.MinValue;
-            }
-            else
-            {
-                ignoreEndDateOfBirth = false;
-                endDateOfBirth = endDateOfBirthDateTimePicker.Value.Date;
-            }
-
-            if (checkBox5.Checked == true)
-            {
-                ignoreEndDateOfEntry = true;
-                endDateOfEntry = DateTime.MinValue;
-            }
-            else
-            {
-                ignoreEndDateOfEntry = false;
-                endDateOfEntry = endDateOfEntryDateTimePicker.Value.Date;
-            }
-
-            if (checkBox6.Checked == true)
-            {
-                ignoreEndDateOfRetirement = true;
-                endDateOfRetirement = DateTime.MinValue;
-            }
-            else
-            {
-                ignoreEndDateOfRetirement = false;
-                endDateOfRetirement = endDateOfRetirementDateTimePicker.Value.Date;
 
             }
 
@@ -233,8 +227,8 @@ namespace PatientRegistry
 
             }
             databaseHandler.FillDataGridView(lastName,firstName,patronymic,gender,ignoreGender,isLyingWithParent,ignoreIsLyingWithParent,
-                dateOfBirth, ignoreDateOfBirth,dateOfEntry,ignoreDateOfEntry,dateOfRetirement,ignoreDateOfRetirement,
-                endDateOfBirth, ignoreEndDateOfBirth, endDateOfEntry, ignoreEndDateOfEntry, endDateOfRetirement, ignoreEndDateOfRetirement,
+                ignoreDateOfBirth,dateOfBirth, isDateOfBirthPeriod, ignoreDateOfEntry, dateOfEntry,isDateOfEntryPeriod, ignoreDateOfRetirement, dateOfRetirement,isDateOfRetirementPeriod,
+                endDateOfBirth, endDateOfEntry, endDateOfRetirement,
                 placeOfLiving,bedProfile, department,status);
 
         }
@@ -244,57 +238,82 @@ namespace PatientRegistry
             if (checkBox1.Checked == true)
             {
                 
-                dateOfBirthDateTimePicker.Enabled = false;
+                
+                endDateOfBirthDateTimePicker.Enabled = true;
             }
-            else dateOfBirthDateTimePicker.Enabled = true;
+            else endDateOfBirthDateTimePicker.Enabled = false;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked == true)
             {
-                dateOfEntryDateTimePicker.Enabled = false;
+                endDateOfEntryDateTimePicker.Enabled = true;
             }
-            else dateOfEntryDateTimePicker.Enabled = true;
+            else endDateOfEntryDateTimePicker.Enabled = false;
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox3.Checked == true)
             {
-                dateOfRetirementDateTimePicker.Enabled = false;
+                endDateOfRetirementDateTimePicker.Enabled = true;
             }
-            else dateOfRetirementDateTimePicker.Enabled = true;
-        }
-
-        private void checkBox6_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox4.Checked == true)
-            {
-
-                endDateOfBirthDateTimePicker.Enabled = false;
-            }
-            else endDateOfBirthDateTimePicker.Enabled = true;
-        }
-
-        private void checkBox5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox5.Checked == true)
-            {
-                endDateOfEntryDateTimePicker.Enabled = false;
-            }
-            else endDateOfEntryDateTimePicker.Enabled = true;
+            else endDateOfRetirementDateTimePicker.Enabled = false;
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox4.Checked == true)
+            {
+                dateOfBirthDateTimePicker.Enabled = false;
+                endDateOfBirthDateTimePicker.Enabled = false;
+                checkBox1.Enabled = false;
+               
+            }
+            else
+            {
+                dateOfBirthDateTimePicker.Enabled = true;
+                //endDateOfBirthDateTimePicker.Enabled = true;
+                checkBox1.Enabled = true;
+                checkBox1.Checked = false;
+            }
+        }
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox5.Checked == true)
+            {
+                dateOfEntryDateTimePicker.Enabled = false;
+                endDateOfBirthDateTimePicker.Enabled = false;
+                checkBox2.Enabled = false;
+
+            }
+            else
+            {
+                dateOfEntryDateTimePicker.Enabled = true;
+                //endDateOfBirthDateTimePicker.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox2.Checked = false;
+            }
+        }
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
             if (checkBox6.Checked == true)
             {
-                endDateOfRetirementDateTimePicker.Enabled = false;
-            }
-            else endDateOfRetirementDateTimePicker.Enabled = true;
-        }
+                dateOfRetirementDateTimePicker.Enabled = false;
+                endDateOfBirthDateTimePicker.Enabled = false;
+                checkBox3.Enabled = false;
 
+
+            }
+            else
+            {
+                dateOfRetirementDateTimePicker.Enabled = true;
+                //endDateOfBirthDateTimePicker.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox3.Checked = false;
+            }
+        }
         private void clearFilterButton_Click(object sender, EventArgs e)
         {
             databaseHandler.FillDataGridView();
@@ -307,12 +326,74 @@ namespace PatientRegistry
             bedProfileComboBox.SelectedIndex = 0;
             statusComboBox.SelectedIndex = 0;
             departmentComboBox.SelectedIndex = 0;
-            checkBox1.Checked = true;
-            checkBox2.Checked = true;
-            checkBox3.Checked = true;
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
             checkBox4.Checked = true;
             checkBox5.Checked = true;
             checkBox6.Checked = true;
+            dateOfBirthDateTimePicker.Value = DateTime.Now;
+            dateOfEntryDateTimePicker.Value = DateTime.Now;
+            dateOfRetirementDateTimePicker.Value = DateTime.Now;
+
+            endDateOfBirthDateTimePicker.Value = DateTime.Now;
+            endDateOfEntryDateTimePicker.Value = DateTime.Now;
+            endDateOfRetirementDateTimePicker.Value = DateTime.Now;
+        }
+
+        private void saveToFileButton_Click(object sender, EventArgs e)
+        {
+          
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Номер");
+            dt.Columns.Add("Фамилия");
+            dt.Columns.Add("Имя");
+            dt.Columns.Add("Отчество");
+            dt.Columns.Add("Пол");
+            dt.Columns.Add("По уходу?");
+            dt.Columns.Add("Дата рождения");
+            dt.Columns.Add("Количество койко-дней");
+            dt.Columns.Add("Дата поступления");
+            dt.Columns.Add("Дата выбытия");
+            dt.Columns.Add("Место проживания");
+            dt.Columns.Add("Профиль койки");
+            dt.Columns.Add("Отделение");
+            dt.Columns.Add("Статус");
+            int i = 1;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+               
+                dt.Rows.Add(i.ToString(), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[8].Value.ToString(), row.Cells[9].Value.ToString(), row.Cells[10].Value.ToString(), row.Cells[11].Value.ToString(), row.Cells[12].Value.ToString(), row.Cells[13].Value.ToString());
+                i++;
+            }
+            
+            ds.Tables.Add(dt);
+            ExportDataSetToExcel(ds);
+        }
+        public static void ExportDataSetToExcel(DataSet ds)
+        {
+          
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                for (int i = 0; i<ds.Tables.Count; i++)
+                {
+                    wb.Worksheets.Add(ds.Tables[i], ds.Tables[i].TableName);
+                }
+                wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                wb.Style.Font.Bold = true;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.Filter = "Excel файлы (*.xlsx)|*.xlsx";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    wb.SaveAs(saveFileDialog.FileName);
+                    System.Diagnostics.Process.Start(saveFileDialog.FileName);
+
+                }
+
+            }
         }
     }
 }
