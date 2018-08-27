@@ -344,7 +344,7 @@ namespace PatientRegistry
         private void saveToFileButton_Click(object sender, EventArgs e)
         {
           
-            DataSet ds = new DataSet();
+            //DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             dt.Columns.Add("Номер");
             dt.Columns.Add("Фамилия");
@@ -368,20 +368,66 @@ namespace PatientRegistry
                 i++;
             }
             
-            ds.Tables.Add(dt);
-            ExportDataSetToExcel(ds);
+            //ds.Tables.Add(dt);
+            ExportDataSetToExcel(dt, false);
         }
-        public static void ExportDataSetToExcel(DataSet ds)
+        public static void ExportDataSetToExcel(DataTable dt, bool isRotation)
         {
           
             using (XLWorkbook wb = new XLWorkbook())
             {
-                for (int i = 0; i<ds.Tables.Count; i++)
+
+
+
+
+                if (isRotation == true)
                 {
-                    wb.Worksheets.Add(ds.Tables[i], ds.Tables[i].TableName);
+                    var ws = wb.Worksheets.Add("Движение за период");
+                    ws.Cell("A1").Value = "Отделение";
+                    ws.Cell("B1").Value = "Количество больних на начало периода";
+                    ws.Cell("C1").Value = "Поступило больных";
+                    ws.Cell("C2").Value = "ВСЕГО";
+                    ws.Cell("D2").Value = "Из них село";
+                    ws.Cell("E2").Value = "Выписано";
+                    ws.Cell("F2").Value = "Переведено";
+                    ws.Cell("G2").Value = "Умерло";
+
+                    ws.Cell("E1").Value = "Выбыло больных";
+                    ws.Cell("H1").Value = "Количество больных на конец периода";
+                    ws.Cell("I1").Value = "Количество койко-дней всего";
+                   
+                    ws.Cell("J1").Value = "Количество койко-дней по уходу";
+
+                    ws.Range("A1:A2").Merge();
+                    ws.Range("B1:B2").Merge();
+                    ws.Range("H1:H2").Merge();
+                    ws.Range("I1:I2").Merge();
+                    ws.Range("J1:J2").Merge();
+
+                    ws.Range("C1:D1").Merge();
+                    ws.Range("E1:G1").Merge();
+
+                  
+
+                    ws.Cell(3, 1).InsertData(dt.Rows);
+                    #warning Не работает автосайз 
+                    ws.Rows().AdjustToContents();
+                    ws.Columns().AdjustToContents();
+                    
                 }
-                wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                wb.Style.Font.Bold = true;
+                else
+                {
+                    wb.Worksheets.Add(dt,"Список пациентов");
+                }
+
+               
+
+
+
+
+
+                /*wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                wb.Style.Font.Bold = true;*/
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.RestoreDirectory = true;
@@ -394,6 +440,25 @@ namespace PatientRegistry
                 }
 
             }
+        }
+
+        private void движениеЗаПериодToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            for (int i = 0; i < 9; i++)
+                dt.Columns.Add();
+          
+             
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                
+                dt.Rows.Add( row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[8].Value.ToString(), row.Cells[9].Value.ToString());
+              
+            }
+
+            //ds.Tables.Add(dt);
+            ExportDataSetToExcel(dt, true);
         }
     }
 }

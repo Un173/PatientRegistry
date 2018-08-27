@@ -82,6 +82,7 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.движениеЗаПериодToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -207,7 +208,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.лрToolStripMenuItem});
+            this.лрToolStripMenuItem,
+            this.движениеЗаПериодToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1148, 24);
@@ -592,6 +594,13 @@
             this.checkBox6.UseVisualStyleBackColor = true;
             this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
+            // движениеЗаПериодToolStripMenuItem
+            // 
+            this.движениеЗаПериодToolStripMenuItem.Name = "движениеЗаПериодToolStripMenuItem";
+            this.движениеЗаПериодToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
+            this.движениеЗаПериодToolStripMenuItem.Text = "Движение за период";
+            this.движениеЗаПериодToolStripMenuItem.Click += new System.EventHandler(this.движениеЗаПериодToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,6 +711,7 @@
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.ToolStripMenuItem движениеЗаПериодToolStripMenuItem;
     }
 }
 
