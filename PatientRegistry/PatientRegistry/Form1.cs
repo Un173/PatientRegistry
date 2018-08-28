@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -9,38 +10,61 @@ namespace PatientRegistry
     public partial class Form1 : Form
     {
         DatabaseHandler databaseHandler;
+        String path = @"S:\Projects\PatientRegistry\PatientRegistry\";
         public Form1()
         {
+           
             InitializeComponent();
-            databaseHandler = new DatabaseHandler(@"S:\Projects\PatientRegistry\PatientRegistry\",'|', dataGridView1);
+            databaseHandler = new DatabaseHandler(path,'|', dataGridView1);
             databaseHandler.ReadAllFromFile();
             databaseHandler.FillDataGridView();
             genderComboBox.SelectedIndex = 0;
             isLyingWithParentComboBox.SelectedIndex = 0;
-            bedProfileComboBox.SelectedIndex = 0;
-            statusComboBox.SelectedIndex = 0;
-            departmentComboBox.SelectedIndex = 0;
+            
 
             placeOfLivingComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             placeOfLivingComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             placeOfLivingComboBox.DropDownStyle = ComboBoxStyle.DropDown;
 
-            String[] lines = System.IO.File.ReadAllLines(@"S:\Projects\PatientRegistry\PatientRegistry\Cities.txt", System.Text.Encoding.Default);
+            String[] lines = System.IO.File.ReadAllLines(path+"Cities.txt", System.Text.Encoding.Default);
             AutoCompleteStringCollection data = new AutoCompleteStringCollection();
             foreach (String str in lines)
             {
                 data.Add(str);
                 placeOfLivingComboBox.Items.Add(str);
             }
-            lines = System.IO.File.ReadAllLines(@"S:\Projects\PatientRegistry\PatientRegistry\Settlements.txt", System.Text.Encoding.Default);
+            lines = System.IO.File.ReadAllLines(path+"Settlements.txt", System.Text.Encoding.Default);
             foreach (String str in lines)
             {
                 data.Add(str);
                 placeOfLivingComboBox.Items.Add(str);
             }
-
-
             placeOfLivingComboBox.AutoCompleteCustomSource = data;
+            lines = System.IO.File.ReadAllLines(path+"BedProfiles.txt", System.Text.Encoding.Default);
+            bedProfileComboBox.Items.Add("Все");
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                bedProfileComboBox.Items.Add(str);
+            }
+       
+            lines = System.IO.File.ReadAllLines(path+"Departments.txt", System.Text.Encoding.Default);
+            departmentComboBox.Items.Add("Все");
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                departmentComboBox.Items.Add(str);
+            }
+            lines = System.IO.File.ReadAllLines(path+"Statuses.txt", System.Text.Encoding.Default);
+            statusComboBox.Items.Add("Все");
+            foreach (String str in lines)
+            {
+                data.Add(str);
+                statusComboBox.Items.Add(str);
+            }
+            bedProfileComboBox.SelectedIndex = 0;
+            statusComboBox.SelectedIndex = 0;
+            departmentComboBox.SelectedIndex = 0;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -66,7 +90,7 @@ namespace PatientRegistry
 
         private void поступлениеToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            AddRecord addRecord = new AddRecord(true, @"S:\Projects\PatientRegistry\PatientRegistry\");
+            AddRecord addRecord = new AddRecord(true, path);
             var result = addRecord.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -376,10 +400,6 @@ namespace PatientRegistry
           
             using (XLWorkbook wb = new XLWorkbook())
             {
-
-
-
-
                 if (isRotation == true)
                 {
                     var ws = wb.Worksheets.Add("Движение за период");
@@ -422,10 +442,6 @@ namespace PatientRegistry
 
                
 
-
-
-
-
                 /*wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 wb.Style.Font.Bold = true;*/
 
@@ -445,20 +461,29 @@ namespace PatientRegistry
         private void движениеЗаПериодToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            for (int i = 0; i < 9; i++)
-                dt.Columns.Add();
-          
-             
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            RotationForm rotationForm = new RotationForm();
+            var result = rotationForm.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                
-                dt.Rows.Add( row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[8].Value.ToString(), row.Cells[9].Value.ToString());
-              
-            }
+                DateTime start = rotationForm.start;
+                DateTime end = rotationForm.end;
+                List<RotationTable> list=databaseHandler.calculateRotation(start,end);
 
-            //ds.Tables.Add(dt);
-            ExportDataSetToExcel(dt, true);
+                DataTable dt = new DataTable();
+                for (int i = 0; i < 10; i++)
+                    dt.Columns.Add();
+
+                foreach (RotationTable table in list)
+                {
+
+                    dt.Rows.Add(table.department, table.startNumberOfPatients, table.patientsEnteredTotal, table.patientsEnteredFromSettlements, table.patientsRetiredByWriteOut, table.patientsRetiredByMoving, table.patientsRetiredByDying, table.endNumberOfPatients, table.numberOfBedDaysTotal, table.numberOfBedDaysCare);
+                }
+
+                //ds.Tables.Add(dt);
+                ExportDataSetToExcel(dt, true);
+            }
+            else return;
+              
         }
     }
 }

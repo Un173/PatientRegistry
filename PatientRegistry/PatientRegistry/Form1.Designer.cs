@@ -46,6 +46,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.лрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поступлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.движениеЗаПериодToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.движениеЗаПериодToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -231,6 +231,13 @@
             this.поступлениеToolStripMenuItem.Text = "Поступление";
             this.поступлениеToolStripMenuItem.Click += new System.EventHandler(this.поступлениеToolStripMenuItem_Click_1);
             // 
+            // движениеЗаПериодToolStripMenuItem
+            // 
+            this.движениеЗаПериодToolStripMenuItem.Name = "движениеЗаПериодToolStripMenuItem";
+            this.движениеЗаПериодToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
+            this.движениеЗаПериодToolStripMenuItem.Text = "Движение за период";
+            this.движениеЗаПериодToolStripMenuItem.Click += new System.EventHandler(this.движениеЗаПериодToolStripMenuItem_Click);
+            // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Location = new System.Drawing.Point(77, 27);
@@ -328,14 +335,6 @@
             // 
             this.departmentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.departmentComboBox.FormattingEnabled = true;
-            this.departmentComboBox.Items.AddRange(new object[] {
-            "Все",
-            "Педиатрическое №1",
-            "Педиатрическое №2",
-            "Патологии новорожденных №1",
-            "Патологии новорожденных №2",
-            "Неврологическое",
-            "Реабилитация"});
             this.departmentComboBox.Location = new System.Drawing.Point(888, 90);
             this.departmentComboBox.Name = "departmentComboBox";
             this.departmentComboBox.Size = new System.Drawing.Size(195, 21);
@@ -354,11 +353,6 @@
             // 
             this.bedProfileComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bedProfileComboBox.FormattingEnabled = true;
-            this.bedProfileComboBox.Items.AddRange(new object[] {
-            "Все",
-            "Педиатрия",
-            "Патология новорожденных",
-            "Неврология"});
             this.bedProfileComboBox.Location = new System.Drawing.Point(888, 63);
             this.bedProfileComboBox.Name = "bedProfileComboBox";
             this.bedProfileComboBox.Size = new System.Drawing.Size(195, 21);
@@ -437,12 +431,6 @@
             // 
             this.statusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Items.AddRange(new object[] {
-            "Все",
-            "Состоит",
-            "Выписка",
-            "Перевод в другое ЛПУ",
-            "Смерть"});
             this.statusComboBox.Location = new System.Drawing.Point(888, 117);
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(195, 21);
@@ -593,13 +581,6 @@
             this.checkBox6.Text = "Все";
             this.checkBox6.UseVisualStyleBackColor = true;
             this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
-            // 
-            // движениеЗаПериодToolStripMenuItem
-            // 
-            this.движениеЗаПериодToolStripMenuItem.Name = "движениеЗаПериодToolStripMenuItem";
-            this.движениеЗаПериодToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
-            this.движениеЗаПериодToolStripMenuItem.Text = "Движение за период";
-            this.движениеЗаПериодToolStripMenuItem.Click += new System.EventHandler(this.движениеЗаПериодToolStripMenuItem_Click);
             // 
             // Form1
             // 

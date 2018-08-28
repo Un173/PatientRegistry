@@ -18,3 +18,4 @@ S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\ExcelNumberFormat.dll
 S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\FastMember.Signed.dll
 S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\DocumentFormat.OpenXml.xml
 S:\Projects\PatientRegistry\PatientRegistry\bin\Debug\ExcelNumberFormat.xml
+S:\Projects\PatientRegistry\PatientRegistry\obj\Debug\PatientRegistry.RotationForm.resources
